@@ -2,7 +2,7 @@ const express = require('express');
 const mustacheExpress = require('mustache-express');
 const bodyParser = require('body-parser');
 const pgp = require('pg-promise')();
-
+const logger = require('morgan');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
@@ -15,7 +15,7 @@ app.use(express.static(__dirname + '/public'));
 // body-parser setup
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+app.use(logger('dev'));
 // connect router
 app.use(require('./router'));
 
